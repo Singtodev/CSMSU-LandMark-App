@@ -1,0 +1,13 @@
+<div class="relative w-full h-full p-5 font-prompt font-light">
+    <div class="max-w-[50rem] mx-auto">
+        <img src="{{ landMark.url}}" class="w-full h-[33rem]" />
+        <div class="min-h-[10rem] bg-orange-50 font-prompt px-4 py-2 flex flex-col gap-2">
+            <h1 class="text-2xl">{{ landMark.name}}</h1>
+            <p>{{landMark.country}}</p>
+            <p>{{landMark.detail}}</p>
+            <div class="flex flex-row">
+                <button [routerLink]="'/'" class="bg-[#3f51b5] px-5 rounded-md text-white text-sm p-[0.35rem] block">กลับ</button> 
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="max-w-[70rem] mx-auto font-prompt font-light">
+
+    <!-- Section Header -->
+    <div class="h-[6rem]  flex flex-col justify-end">
+        <div class="grid grid-cols-3">
+            <div class="flex flex-row items-center justify-center pt-7 pb-4 flex gap-2">
+                <span class="whitespace-nowrap">หมายเลขสถานที่</span>
+                <input value="{{activateIndex || 0}}" [(ngModel)]="activateIndex" #id min="0"  class="outline-none focus:ring focus:ring-blue-300 transition-all duration-300 w-[3.5rem] border border-black p-[0.18rem]" type="number">
+                <button (click)="findLandMarkOne(id)" class="bg-[#3f51b5] px-5 rounded-md text-white text-sm p-[0.35rem]">ค้นหา</button>
+            </div>
+            <div class="flex flex-row items-center justify-center pt-7 pb-4 flex gap-2">
+                <span class="whitespace-nowrap">ค้นหาจากชื่อสถานที่</span>
+                <input value="{{keyword || '' }}" [(ngModel)]="keyword" #search class="outline-none focus:ring focus:ring-blue-300 transition-all duration-300 w-[10rem] border border-black p-[0.18rem]" type="text">
+                <button (click)="findLandMarkByName(search)" class="bg-[#3f51b5] px-5 rounded-md text-white text-sm p-[0.35rem]">ค้นหา</button>
+            </div>
+            <div class="flex flex-row items-center justify-center pt-7 pb-4 flex gap-2">
+                <span class="whitespace-nowrap">เลือกประเทศ</span>
+                <select value="{{country}}" [(ngModel)]="country" #category (change)="findLandMarkByCategory(category)" class="outline-none focus:ring focus:ring-blue-300 transition-all duration-300 w-[6rem] border border-black p-[0.18rem]">
+                    <option *ngFor="let country of getLandMarkCountry()">{{country}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    {{this.message}}
+    <div *ngFor="let landmark of filterLandMark" class="grid grid-cols-6 py-2">
+        <div class="col-span-2">
+            <img
+             (click)="openLandMarkDetail(landmark?.idx ?? 0)"
+             src="{{landmark.url}}" 
+             class="cursor-pointer hover:scale-105 transition-all duration-300 w-[600] h-[400] object-fit bg-cover" />
+        </div>
+        <div class="col-span-4 px-3 flex flex-col gap-y-2 bg-yellow-50">
+            <div class="text-xl font-regular">{{landmark.idx}} {{landmark.name}}</div>
+            <div class="text-xs">{{landmark.country}}</div>
+            <div class="text-xs">{{landmark.detail}}</div>
+        </div>
+    </div>
+</div>
